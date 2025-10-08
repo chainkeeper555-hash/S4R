@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>SH4NER | S4R - Live Stream</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=block" rel="stylesheet">
+    <style>
+:root {
+    --bg-top: #07121a;
+    --bg-bottom: #001017;
+    --card-bg: #031016;
+    --accent-cyan: #00E0FF;
+    --accent-cyan-2: #72F4FF;
+    --muted-white: #c7dfe6;
+    --thumbnail-yellow: #00E0FF;
+    --thumbnail-green: #00ff66;
+    --text-white: #ffffff;
+    --neon-blue: #00E0FF;
+    --neon-green: #00ff66;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    color: var(--muted-white);
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    font-size: clamp(12px, 3vw, 14px);
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+body {
+    -ms-overflow-style: none;
+}
+
+.bg-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, transparent 0%, var(--bg-top) 90%),
+        repeating-linear-gradient(45deg, rgba(3,22,25,0.18) 0px, rgba(3,22,25,0.18) 2px, transparent 2px, transparent 6px),
+        repeating-linear-gradient(-45deg, rgba(3,22,25,0.18) 0px, rgba(3,22,25,0.18) 2px, transparent 2px, transparent 6px);
+    filter: blur(4px);
+    z-index: -1;
+}
+
+.header {
+    width: clamp(90%, 95vw, 1810px);
+    height: clamp(60px, 15vw, 100px);
+    top: clamp(10px, 2vw, 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    border-radius: clamp(16px, 4vw, 32px);
+    border: 1px solid var(--accent-cyan);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    padding: clamp(8px, 2vw, 12px);
+}
+
+.header .left-icons {
+    display: flex;
+    align-items: center;
+    width: 1/3;
+}
+
+.header .left-icons nav {
+    display: flex;
+    gap: 5px;
+}
+
+.header .left-icons nav a {
+    color: #dfefff/95;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: clamp(12px, 3vw, 14px);
+    letter-spacing: 0.03em;
+    padding: 8px 12px;
+    transition: all 180ms cubic-bezier(.2,.9,.3,1);
+}
+
+.nav-active {
+    background: rgba(167, 236, 255, 1);
+    box-shadow: 0 6px 30px rgba(0,224,255,0.36), inset 0 -2px 8px rgba(255,255,255,0.06);
+    color: #000000 !important;
+    border-radius: 15px;
+    border: 1px solid var(--accent-cyan);
+    transition: all 180ms cubic-bezier(.2,.9,.3,1);
+    width: clamp(100px, 12vw, 70px);
+    height: clamp(40px, 5vw, 48px);
+    font-size: clamp(10px, 2.5vw, 12px);
+    padding: 16px 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.nav-active:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,224,255,0.48);
+}
+
+.header .logo-container {
+    display: flex;
+    justify-content: center;
+    width: 1/3;
+}
+
+.header .logo-container img {
+    height: clamp(48px, 10vw, 70px);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header .right-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 1/3;
+    gap: clamp(4px, 1vw, 8px);
+}
+
+.header .right-icons .feather-icon i {
+    color: var(--text-white);
+    width: clamp(16px, 4vw, 20px);
+    height: clamp(16px, 4vw, 20px);
+}
+
+.header .right-icons .icon-fallback {
+    display: none;
+    font-size: clamp(10px, 2.5vw, 12px);
+    color: var(--text-white);
+}
+
+.header .right-icons .feather-icon:empty + .icon-fallback {
+    display: inline;
+}
+
+.cta-button {
+    background: rgba(167, 236, 255, 1);
+    box-shadow: 0 6px 30px rgba(0,224,255,0.36), inset 0 -2px 8px rgba(255,255,255,0.06);
+    color: #021d22;
+    border-radius: 15px;
+    border: 1px solid var(--accent-cyan);
+    transition: all 180ms cubic-bezier(.2,.9,.3,1);
+    width: clamp(160px, 20vw, 200px);
+    height: clamp(40px, 5vw, 48px);
+    font-size: clamp(10px, 2.5vw, 12px);
+    padding: 16px 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,224,255,0.48);
+}
+
+.hero-title {
+    text-shadow: 0 4px 24px rgba(0,224,255,0.38), 0 1px 0 rgba(255,255,255,0.02);
+    font-size: clamp(24px, 6vw, 36px);
+    color: var(--text-white);
+    white-space: nowrap;
+    text-align: center;
+}
+
+.hero-text {
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-text p {
+    font-size: clamp(10px, 3vw, 12px);
+    line-height: 1.5;
+    text-align: center;
+    max-width: clamp(500px, 80vw, 600px);
+}
+
+.livestream-banner {
+    width: 100%;
+    height: 80%;
+    border-radius: clamp(8px, 2vw, 12px);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 8px 30px rgba(0,224,255,0.1);
+}
+
+.social-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: var(--text-white);
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: #00BAEC;
+    text-decoration-thickness: 10%;
+    text-underline-offset: 0%;
+    text-decoration-skip-ink: auto;
+    margin-bottom: clamp(48px, 8vw, 64px);
+    text-shadow: 0 6px 20px rgba(0,224,255,0.22);
+}
+
+.schedule-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: right;
+    color: var(--text-white);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    text-shadow: 0 6px 20px rgba(0,224,255,0.22);
+}
+
+.review-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: left;
+    color: var(--text-white);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    text-shadow: 0 6px 20px rgba(0,224,255,0.22);
+}
+
+.schedule-content {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: right;
+    color: var(--text-white);
+}
+
+.schedule-image {
+    width: clamp(200px, 30vw, 300px);
+    height: auto;
+    object-fit: cover;
+    border-radius: clamp(8px, 2vw, 12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.schedule-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 24px);
+}
+
+.schedule-content-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: clamp(40px, 7vw, 48px);
+    width: fit-content;
+    margin-right: auto;
+    margin-left: 0;
+    padding-left: 0;
+    min-width: 400px;
+}
+
+.schedule-content-container-right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: clamp(40px, 7vw, 48px);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 0;
+    min-width: 400px;
+}
+
+.schedule-days {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: clamp(4px, 1vw, 8px);
+    padding: clamp(12px, 3vw, 16px);
+    margin-top: clamp(-96px, -12vw, -77px);
+}
+
+.day-time-pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(8px, 2vw, 12px);
+}
+
+.mobile-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-top);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-white);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(16px, 4vw, 18px);
+    padding: 20px;
+}
+
+@media (max-width: 1024px) {
+    .mobile-warning {
+        display: flex;
+    }
+    body.mobile-detected .content-wrapper {
+        display: none;
+    }
+    .schedule-image {
+        max-width: 250px !important;
+    }
+    .schedule-content-container, .schedule-content-container-right {
+        min-width: 300px;
+        gap: clamp(32px, 6vw, 40px);
+    }
+    .schedule-days {
+        padding: clamp(10px, 2.5vw, 14px);
+        margin-top: clamp(-77px, -9.6vw, -58px);
+    }
+    .social-heading {
+        font-size: clamp(36px, 8vw, 48px);
+        margin-bottom: clamp(40px, 7vw, 56px);
+    }
+    .schedule-heading {
+        font-size: clamp(32px, 6vw, 36px);
+    }
+    .review-heading {
+        font-size: clamp(32px, 6vw, 36px);
+    }
+    .schedule-content {
+        font-size: clamp(14px, 3vw, 15px);
+    }
+}
+
+@media (min-width: 1025px) {
+    .header {
+        width: clamp(90%, 95vw, 1810px);
+        height: clamp(60px, 15vw, 100px);
+        padding: clamp(8px, 2vw, 12px);
+    }
+    .right-icons {
+        gap: clamp(4px, 1vw, 8px);
+    }
+    .social-heading {
+        font-size: 72px;
+    }
+    .schedule-heading {
+        font-size: 48px;
+    }
+    .review-heading {
+        font-size: 48px;
+    }
+    .schedule-content {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: clamp(4px, 1vw, 8px);
+    }
+    .header .left-icons {
+        display: none;
+    }
+    .header .logo-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .header .right-icons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-grow: 0;
+        gap: clamp(4px, 1vw, 8px);
+    }
+    .header .cta-button {
+        display: none;
+    }
+    .livestream-banner {
+        height: 50vh;
+    }
+}
+
+@media (max-width: 640px) {
+    .schedule-image {
+        max-width: 180px !important;
+    }
+    .schedule-content-container, .schedule-content-container-right {
+        min-width: 250px;
+        gap: clamp(24px, 5vw, 32px);
+    }
+    .schedule-days {
+        padding: clamp(8px, 2vw, 12px);
+        margin-top: clamp(-58px, -7.2vw, -38px);
+    }
+    .social-heading {
+        margin-bottom: clamp(32px, 6vw, 48px);
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        font-size: clamp(10px, 3vw, 12px);
+    }
+    .header {
+        width: 98%;
+        height: clamp(40px, 12vw, 60px);
+        border-radius: clamp(8px, 2vw, 12px);
+        padding: clamp(4px, 1vw, 6px);
+    }
+    .header .logo-container {
+        gap: clamp(4px, 1vw, 8px);
+    }
+    .header .right-icons i {
+        width: clamp(12px, 3vw, 14px);
+        height: clamp(12px, 3vw, 14px);
+    }
+    .social-heading {
+        font-size: clamp(24px, 6vw, 32px);
+        margin-bottom: clamp(24px, 5vw, 40px);
+    }
+    .schedule-heading {
+        font-size: clamp(24px, 5vw, 28px);
+    }
+    .review-heading {
+        font-size: clamp(24px, 5vw, 28px);
+    }
+    .schedule-content {
+        font-size: clamp(12px, 3vw, 13px);
+    }
+    .schedule-image {
+        max-width: 120px !important;
+    }
+    .livestream-banner {
+        height: 40vh;
+    }
+}
+
+.icon-fallback {
+    display: none;
+    font-size: clamp(10px, 2.5vw, 12px);
+    color: var(--text-white);
+}
+
+.feather-icon:not(:empty) + .icon-fallback {
+    display: none;
+}
+
+.feather-icon:empty + .icon-fallback {
+    display: inline;
+}
+
+.footer-logo-container {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 4vw, 24px);
+    margin: clamp(16px, 4vw, 24px) 0;
+}
+
+.footer-logo {
+    width: clamp(40px, 10vw, 60px);
+    height: clamp(40px, 10vw, 60px);
+    object-fit: contain;
+}
+
+@media (max-width: 640px) {
+    .footer h2 {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+    .footer h1 {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+    .footer p.disclaimer-text {
+        font-size: clamp(10px, 3vw, 12px);
+        line-height: 1.4;
+        max-width: 100%;
+    }
+    .footer p.gamble-text {
+        font-size: clamp(10px, 3vw, 12px);
+        line-height: 1.2;
+        max-width: 100%;
+    }
+}
+
+.h-divider {
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.h-divider .shadow {
+    overflow: hidden;
+    height: 16px;
+}
+
+.h-divider .shadow:after {
+    content: '';
+    display: block;
+    margin: -20px auto 0;
+    width: 100%;
+    height: 20px;
+    border-radius: 125px/8px;
+    box-shadow: 0 0 8px 2px rgba(232, 232, 232, 0.9), 0 0 12px 4px rgba(233, 233, 233, 0.5);
+}
+
+.review-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: clamp(8px, 2vw, 12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.review-card {
+    background: var(--card-bg);
+    border-radius: clamp(8px, 2vw, 12px);
+    padding: clamp(16px, 4vw, 24px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.leaderboard-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 8vw, 72px);
+    text-align: center;
+    color: var(--neon-blue);
+    padding: clamp(20px, 4vw, 40px);
+}
+
+.tab-button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.tab-button.active {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-decoration: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: 10%;
+    text-decoration-skip-ink: auto;
+    color: #021d22;
+    background: rgba(167, 236, 255, 1);
+    box-shadow: 0 6px 30px rgba(0,224,255,0.36), inset 0 -2px 8px rgba(255,255,255,0.06);
+    border-radius: 15px;
+    border: 1px solid var(--accent-cyan);
+    transition: all 180ms cubic-bezier(.2,.9,.3,1);
+    width: clamp(100px, 20vw, 120px);
+    height: clamp(40px, 5vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.tab-button.inactive {
+    color: #ffffff;
+}
+
+.winner-grid {
+    margin-top: 2rem;
+}
+
+.winner-card {
+    background: var(--card-bg);
+    border-width: 0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: -1;
+}
+
+.winner-card.middle-card {
+    transform: translateY(-30px);
+}
+
+.winner-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.winner-avatar::after {
+    content: '';
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(180deg, #00BAEC 0%, #00546A 37.37%, #1A2526 82.23%);
+    transform: skewY(-10deg);
+    opacity: 0.8;
+    filter: blur(4px);
+    z-index: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.winner-avatar:hover {
+    transform: none;
+    width: 200px;
+    height: 200px;
+}
+
+.trophy-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.winning-amount {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.eth-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.rank-win {
+    font-size: 0.75rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.countdown {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.use-code-btn {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 9999px;
+    border-width: 2px;
+    border-color: var(--neon-blue);
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s;
+    background: transparent;
+    border-style: solid;
+}
+
+.use-code-btn:hover {
+    color: var(--neon-blue);
+}
+
+.leaderboard-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    overflow-x: auto;
+}
+
+.leaderboard-table table {
+    width: 100%;
+    color: #ffffff;
+}
+
+.leaderboard-table th {
+    background: var(--card-bg);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.leaderboard-table td {
+    padding: 0.75rem;
+    border-top: 1px solid var(--accent-cyan);
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background: rgba(3, 16, 22, 0.5);
+}
+
+.leaderboard-table tr:hover {
+    background: rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.leaderboard-table .avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+}
+
+.leaderboard-table .profit {
+    text-align: right;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+}
+
+.pagination button.active {
+    background: var(--neon-blue);
+    color: #000000;
+    border-radius: 9999px;
+}
+
+@media (max-width: 1024px) {
+    .winner-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .winner-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    .leaderboard-table {
+        overflow-x: auto;
+    }
+}
+
+
+.schedule-content-container .day-time-pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(8px, 2vw, 12px);
+}
+
+.schedule-content-container .schedule-time {
+    background: transparent; /* Transparent background for placeholder effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Very faint white border */
+    border-radius: clamp(4px, 1vw, 6px);
+    padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 8px);
+    width: clamp(60px, 10vw, 80px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7); /* Slightly faded text for placeholder look */
+    box-shadow: none; /* Remove shadow for cleaner placeholder style */
+}
+
+.schedule-content-container .schedule-day {
+    width: clamp(80px, 12vw, 100px);
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--text-white);
+}
+
+/* Right Schedule Container */
+
+
+.schedule-content-container-right .day-time-pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(8px, 2vw, 12px);
+}
+
+.schedule-content-container-right .schedule-day {
+    width: clamp(80px, 12vw, 100px);
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--text-white);
+}
+
+.schedule-content-container-right .schedule-time {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: clamp(4px, 1vw, 6px);
+    padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 8px);
+    width: clamp(60px, 10vw, 80px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .schedule-content-container, .schedule-content-container-right {
+        background-size: cover; /* Adjust background size for smaller screens */
+        padding: clamp(15px, 4vw, 25px);
+    }
+    .schedule-content-container .schedule-time, .schedule-content-container-right .schedule-time {
+        font-size: clamp(14px, 3vw, 15px);
+        padding: clamp(3px, 0.8vw, 5px) clamp(5px, 1.2vw, 7px);
+        width: clamp(50px, 8vw, 70px);
+        border-radius: clamp(3px, 0.8vw, 5px);
+    }
+    .schedule-content-container .schedule-day, .schedule-content-container-right .schedule-day {
+        width: clamp(70px, 10vw, 90px);
+        font-size: clamp(14px, 3vw, 15px);
+    }
+    .schedule-content-container .day-time-pair, .schedule-content-container-right .day-time-pair {
+        gap: clamp(6px, 1.5vw, 10px);
+    }
+}
+
+@media (max-width: 640px) {
+    .schedule-content-container, .schedule-content-container-right {
+        background-size: cover;
+        padding: clamp(10px, 3vw, 20px);
+    }
+    .schedule-content-container .schedule-time, .schedule-content-container-right .schedule-time {
+        font-size: clamp(12px, 3vw, 13px);
+        padding: clamp(2px, 0.6vw, 4px) clamp(4px, 1vw, 6px);
+        width: clamp(45px, 7vw, 60px);
+        border-radius: clamp(2px, 0.6vw, 4px);
+    }
+    .schedule-content-container .schedule-day, .schedule-content-container-right .schedule-day {
+        width: clamp(60px, 8vw, 80px);
+        font-size: clamp(12px, 3vw, 13px);
+    }
+    .schedule-content-container .day-time-pair, .schedule-content-container-right .day-time-pair {
+        gap: clamp(5px, 1.2vw, 8px);
+    }
+}
+
+@media (max-width: 320px) {
+    .schedule-content-container, .schedule-content-container-right {
+        background-size: cover;
+        padding: clamp(8px, 2vw, 15px);
+    }
+    .schedule-content-container .schedule-time, .schedule-content-container-right .schedule-time {
+        font-size: clamp(10px, 3vw, 11px);
+        padding: clamp(2px, 0.5vw, 3px) clamp(3px, 0.8vw, 5px);
+        width: clamp(40px, 6vw, 50px);
+        border-radius: clamp(2px, 0.5vw, 3px);
+    }
+    .schedule-content-container .schedule-day, .schedule-content-container-right .schedule-day {
+        width: clamp(50px, 6vw, 60px);
+        font-size: clamp(10px, 3vw, 11px);
+    }
+    .schedule-content-container .day-time-pair, .schedule-content-container-right .day-time-pair {
+        gap: clamp(4px, 1vw, 6px);
+    }
+}
+/* Add to your existing CSS */
+.schedule-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.schedule-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(50px, 10vw, 80px);
+   background: linear-gradient(360deg, rgba(0, 14, 15, 0) 0%, #000e0f36 62.21%);
+  box-shadow: 0 4px 20px rgba(0, 14, 15, 0.25);
+  border-radius: 16px;
+    pointer-events: none;
+}
+
+/* Your existing CSS remains unchanged */
+.schedule-content-container .day-time-pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(8px, 2vw, 12px);
+}
+
+/* ... rest of your CSS ... */
+</style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <!-- Header -->
+    <header class="header fixed z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <div class="flex items-center w-1/3 left-icons">
+                <nav class="flex space-x-4 sm:space-x-6">
+                    <a href="index.html" class="text-[#dfefff]/95 uppercase font-semibold text-xs sm:text-sm tracking-wide">Home</a>
+                    <a href="gameplay.html" class="text-[#dfefff]/95 uppercase font-semibold text-xs sm:text-sm tracking-wide nav-active">Gameplay</a>
+                    <a href="givaway.html" class="text-[#dfefff]/95 uppercase font-semibold text-xs sm:text-sm tracking-wide">Giveaway</a>
+                    <a href="#" class="text-[#dfefff]/95 uppercase font-semibold text-xs sm:text-sm tracking-wide">Offers</a>
+                </nav>
+            </div>
+            <div class="flex justify-center w-1/3 logo-container">
+                <img src="img/Sh4ner_White 1.png" alt="Logo" class="h-8 sm:h-10 rounded-full object-cover">
+            </div>
+            <div class="flex items-center space-x-1 sm:space-x-2 w-1/3 justify-end right-icons">
+                <a href="https://x.com" target="_blank" aria-label="X" class="feather-icon">
+                    <svg class="text-white w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path>
+                    </svg>
+                </a>
+                <span class="icon-fallback">X</span>
+                <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="feather-icon"><i data-feather="youtube" class="text-white w-4 h-4 sm:w-5 sm:h-5"></i></a>
+                <span class="icon-fallback">YT</span>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="feather-icon"><i data-feather="instagram" class="text-white w-4 h-4 sm:w-5 sm:h-5"></i></a>
+                <span class="icon-fallback">IG</span>
+                <a href="https://telegram.org" target="_blank" aria-label="Telegram" class="feather-icon"><i data-feather="send" class="text-white w-4 h-4 sm:w-5 sm:h-5"></i></a>
+                <span class="icon-fallback">TG</span>
+                <button class="cta-button flex items-center uppercase font-bold tracking-wider">
+                    Follow on Kick!
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Live Stream Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 pb-12 sm:pb-16 relative">
+        <section class="livestream-section" aria-labelledby="livestream-heading">
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <h2 id="livestream-heading" class="social-heading">S4R | Live Stream</h2>
+                <img src="img/stream.png" alt="S4R Live Stream Banner" class="livestream-banner" data-aos="fade-up">
+            </div>
+        </section>
+         <h2 id="schedule-heading" class="social-heading">Stream Schedule</h2>
+        <section class="schedule-section" aria-labelledby="schedule-heading">
+    <div class="flex flex-row flex-nowrap justify-center gap-[clamp(64px,12vw,80px)] mb-[clamp(16px,4vw,24px)] sm:mb-[clamp(24px,5vw,32px)]">
+        <!-- Left Schedule: Image on the left edge, time then day on the right -->
+        <div class="schedule-content-container">
+            <img src="img/cdff3c906e257960a1758d130ceecf3c3f819d8b-removebg-preview.png" alt="Stream Schedule Image" class="schedule-image" data-aos="fade-right" style="width: 100%; max-width: 600px; height: auto;">
+            <div class="schedule-days">
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Monday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Tuesday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Wednesday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Thursday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Friday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Saturday</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-time">10:30</p>
+                    <p class="schedule-content schedule-day">Sunday</p>
+                </div>
+            </div>
+        </div>
+        <!-- Right Schedule: Day then time on the left, image on the right edge -->
+        <div class="schedule-content-container-right">
+            <div class="schedule-days">
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Monday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Tuesday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Wednesday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Thursday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Friday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Saturday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+                <div class="day-time-pair">
+                    <p class="schedule-content schedule-day">Sunday</p>
+                    <p class="schedule-content schedule-time">10:30</p>
+                </div>
+            </div>
+            <img src="img/2323064511127e6cd3a8e6888399fad14870baa7-removebg-preview.png" alt="Stream Schedule Image" class="schedule-image" data-aos="fade-left" style="width: 100%; max-width: 600px; height: auto;">
+        </div>
+    </div>
+<section class="action-section" aria-labelledby="action-heading">
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <img src="img/giveaway.jpg" alt="Join the Action Banner" class="livestream-banner" data-aos="fade-up">
+            </div>
+        </section>
+        
+       <section class="review-section" aria-labelledby="review-heading">
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <h2 id="review-heading" class="social-heading">S4R | Review</h2>
+                <h3 class="review-heading">Slot Review</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 w-full">
+                    <div class="review-card" data-aos="fade-up">
+                        <img src="img/slote.png" alt="Crash Image 1" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Crash - BC original</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Experience the adrenaline-pumping action of Crash, a high-speed multiplayer game on BC.GAME! Play on RED, GREEN, or MOON and watch the multiplier rise until it goes “Bang”. Use the auto cash-out for precise execution and avoid losses caused by lag. Enjoy fair gameplay, generous promotions, and the thrill of victory in this top-tier crypto game!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="img/slote.png" alt="Crash Image 2" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Crash - BC original</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Experience the adrenaline-pumping action of Crash, a high-speed multiplayer game on BC.GAME! Play on RED, GREEN, or MOON and watch the multiplier rise until it goes “Bang”. Use the auto cash-out for precise execution and avoid losses caused by lag. Enjoy fair gameplay, generous promotions, and the thrill of victory in this top-tier crypto game!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="img/slote.png" alt="Crash Image 3" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Crash - BC original</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Experience the adrenaline-pumping action of Crash, a high-speed multiplayer game on BC.GAME! Play on RED, GREEN, or MOON and watch the multiplier rise until it goes “Bang”. Use the auto cash-out for precise execution and avoid losses caused by lag. Enjoy fair gameplay, generous promotions, and the thrill of victory in this top-tier crypto game!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="img/slote.png" alt="Crash Image 4" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Crash - BC original</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Experience the adrenaline-pumping action of Crash, a high-speed multiplayer game on BC.GAME! Play on RED, GREEN, or MOON and watch the multiplier rise until it goes “Bang”. Use the auto cash-out for precise execution and avoid losses caused by lag. Enjoy fair gameplay, generous promotions, and the thrill of victory in this top-tier crypto game!
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-end w-full">
+                    <a href="#" class="cta-button flex items-center uppercase font-bold tracking-wider">View More</a>
+                </div>
+            </div>
+        </section>
+        <section class="banner-section" aria-labelledby="banner-heading">
+            <h2 id="banner-heading" class="sr-only">Promotional Banner</h2>
+            <div class="h-divider">
+                <div class="shadow"></div>
+            </div>
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <img src="img/39d0fbc18d39cd2bd9acd7e6f1ebffbfcc2a9d26.jpg" alt="Promotional Banner" class="livestream-banner" data-aos="fade-up">
+            </div>
+            <div class="h-divider">
+                <div class="shadow"></div>
+            </div>
+        </section>
+       <section class="promo-section" aria-labelledby="promo-heading">
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <h3 class="review-heading text-right self-end">Casino review</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 w-full">
+                    <div class="review-card" data-aos="fade-up">
+                        <img src="img/adf3b85e237558d3ebee5675c54db63407919604.png" alt="Promotion Image 1" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Welcome Bonus</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Kick off your gaming journey with our exclusive Welcome Bonus on BC.GAME! Sign up today and receive a generous match bonus on your first deposit. Enjoy more playtime and bigger wins with this limited-time offer!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="img/adf3b85e237558d3ebee5675c54db63407919604.png" alt="Promotion Image 2" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Daily Free Spins</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Spin the reels every day with our Daily Free Spins promotion! Log in to BC.GAME daily to claim your free spins on selected slots. No deposit required—just pure fun and a chance to win big!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="img/adf3b85e237558d3ebee5675c54db63407919604.png" alt="Promotion Image 3" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">Cashback Rewards</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Get rewarded even when luck isn't on your side with our Cashback Rewards! Play on BC.GAME and receive a percentage of your losses back weekly. Keep the excitement going with this player-friendly offer!
+                        </p>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="img/adf3b85e237558d3ebee5675c54db63407919604.png" alt="Promotion Image 4" class="review-image mb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-white font-bold text-xl sm:text-2xl">VIP Exclusive Bonus</h4>
+                            <div class="flex items-center space-x-1">
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                                <i data-feather="star" style="color: rgba(0, 186, 236, 1); width: 20px; height: 20px;"></i>
+                            </div>
+                        </div>
+                        <p class="text-white leading-relaxed" style="font-size: 12px;">
+                            Join the VIP club at BC.GAME and unlock exclusive bonuses tailored for our top players! Enjoy personalized offers, higher limits, and premium rewards that elevate your gaming experience!
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-end w-full">
+                    <a href="#" class="cta-button flex items-center uppercase font-bold tracking-wider">View More</a>
+                </div>
+            </div>
+        </section>
+         <section class="banner-section" aria-labelledby="banner-heading">
+            <h2 id="banner-heading" class="sr-only">Promotional Banner</h2>
+            <div class="h-divider">
+                <div class="shadow"></div>
+            </div>
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <img src="img/d9f29429e30aa62c64802f7c45ac336191c1343c.jpg" alt="Promotional Banner" class="livestream-banner" data-aos="fade-up">
+            </div>
+            <div class="h-divider">
+                <div class="shadow"></div>
+            </div>
+        </section>
+<section class="leaderboard-section" aria-labelledby="leaderboard-heading">
+    <h2 id="livestream-heading" class="social-heading">S4R | Leaderboard</h2>
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-4xl font-bold text-white">Big Win by Players</h3>
+            <div class="flex gap-4">
+                <button class="tab-button active" data-tab="daily">Daily</button>
+                <button class="tab-button inactive" data-tab="monthly">Monthly</button>
+            </div>
+        </div>
+        <div class="winner-grid grid grid-cols-3 gap-6 mb-8" data-aos="fade-up">
+            <div class="winner-card">
+                <img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Brian Ngo" class="winner-avatar">
+                <h4 class="text-xl font-bold text-white">Brian Ngo</h4>
+                <img src="img/Trophy.gif" alt="Trophy" class="trophy-icon">
+                <p class="text-gray-400 text-sm">@jwkxd</p>
+                <p class="winning-amount">50.000 <img src="img/ethereum-icon.png" alt="Ethereum" class="eth-icon"></p>
+            </div>
+            <div class="winner-card middle-card">
+                <img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Jolie Joie" class="winner-avatar">
+                <h4 class="text-xl font-bold text-white">Jolie Joie</h4>
+                <img src="img/Trophy.gif" alt="Trophy" class="trophy-icon">
+                <p class="text-gray-400 text-sm">@dudawid</p>
+                <p class="winning-amount">100.000 <img src="img/ethereum-icon.png" alt="Ethereum" class="eth-icon"></p>
+                <div class="countdown" id="countdown">10d 23h 59m 29s</div>
+                <button class="use-code-btn">Use Code SHARE</button>
+            </div>
+            <div class="winner-card">
+                <img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="David Do" class="winner-avatar">
+                <h4 class="text-xl font-bold text-white">David Do</h4>
+                <img src="img/Trophy.gif" alt="Trophy" class="trophy-icon">
+                <p class="text-gray-400 text-sm">@pnqraf</p>      
+                <p class="winning-amount">20.000 <img src="img/ethereum-icon.png" alt="Ethereum" class="eth-icon"></p>
+            </div>
+        </div>
+        <div class="leaderboard-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>User name</th>
+                        <th>Bet amount</th>
+                        <th>Multiplier</th>
+                        <th>Profit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Henrietta O’Connell<br><span class="text-gray-400 text-sm">@henrietta</span></td>
+                        <td>12,241</td>
+                        <td>2,114.424</td>
+                        <td class="profit">+1,000.89 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>5<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player5<br><span class="text-gray-400 text-sm">@player5</span></td>
+                        <td>8,500</td>
+                        <td>1,800.123</td>
+                        <td class="profit">+750.45 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>6<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player6<br><span class="text-gray-400 text-sm">@player6</span></td>
+                        <td>6,300</td>
+                        <td>1,500.789</td>
+                        <td class="profit">+500.12 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>7<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player7<br><span class="text-gray-400 text-sm">@player7</span></td>
+                        <td>4,900</td>
+                        <td>1,200.456</td>
+                        <td class="profit">+300.78 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>8<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player8<br><span class="text-gray-400 text-sm">@player8</span></td>
+                        <td>3,700</td>
+                        <td>1,000.234</td>
+                        <td class="profit">+200.34 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>9<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player9<br><span class="text-gray-400 text-sm">@player9</span></td>
+                        <td>2,500</td>
+                        <td>900.123</td>
+                        <td class="profit">+150.67 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                    <tr>
+                        <td>10<br><span class="rank-win">Win</span></td>
+                        <td><img src="img/68bc13f12b9955da45ff08fbac97d84ece42bc86.png" alt="Avatar" class="avatar">Player10<br><span class="text-gray-400 text-sm">@player10</span></td>
+                        <td>1,800</td>
+                        <td>800.456</td>
+                        <td class="profit">+100.23 <img src="img/eth-icon.png" alt="ETH Icon" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 4px;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button>←</button>
+            <button>1</button>
+            <button class="active">2</button>
+            <button>3</button>
+            <button>→</button>
+        </div>
+    </div>
+</section>
+        <div class="mobile-warning">
+            <p>Please use a desktop or laptop computer to view this website. Mobile access is not supported at this time.</p>
+        </div>
+    </main>
+<section class="contact-section" aria-labelledby="contact-heading">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="h-divider">
+            <div class="shadow"></div>
+        </div>
+        <h2 id="contact-heading" class="social-heading">Contact S4R Team</h2>
+        <form class="max-w-3xl mx-auto">
+            <p class="text-center text-[16px] sm:text-[18px] text-white font-['Poppins'] mb-8">Reach out to the S4R team for collaboration!</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <input type="text" id="first-name" name="first-name" placeholder="First Name" class="w-full p-3 rounded-lg bg-[rgba(3,16,22,0.8)] border border-gray-500 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+                </div>
+                <div>
+                    <input type="text" id="last-name" name="last-name" placeholder="Last Name" class="w-full p-3 rounded-lg bg-[rgba(3,16,22,0.8)] border border-gray-500 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <input type="email" id="email" name="email" placeholder="Email" class="w-full p-3 rounded-lg bg-[rgba(3,16,22,0.8)] border border-gray-500 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-gray-500" required>
+            </div>
+            <div class="mb-4">
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" class="w-full p-3 rounded-lg bg-[rgba(3,16,22,0.8)] border border-gray-500 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-gray-500">
+            </div>
+            <div class="mb-4">
+                <textarea id="message" name="message" rows="5" placeholder="Message" class="w-full p-3 rounded-lg bg-[rgba(3,16,22,0.8)] border border-gray-500 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-gray-500" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="w-full primary-cta rounded-xl uppercase font-bold text-sm sm:text-base">Send Message</button>
+            </div>
+        </form>
+    </div>
+</section>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <div class="h-divider">
+                <div class="shadow"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="section-divider w-full mb-8"></div>
+                <h2 class="text-[#FFFF00] font-bold text-[48px] text-center font-['Poppins']">Disclaimer</h2>
+                <p class="text-[16px] text-center font-['Poppins'] font-normal mt-4 max-w-2xl mx-auto disclaimer-text">
+                    sh4ner.com is an independent igaming news site and casino comparison service. Every effort is made to ensure that the bonus offers listed here are accurate and up-to-date. However, we accept no responsibility for inaccuracies or errors. Please check terms and conditions before deciding to take a bonus.
+                </p>
+                <h1 class="text-[#FF0000] font-bold text-[48px] text-center font-['Poppins'] mt-8">Gamble Responsibly</h1>
+                <p class="text-[16px] text-center font-['Poppins'] font-normal mt-4 max-w-2xl mx-auto gamble-text">
+                    Please gamble responsibly. Gambling can have a serious impact on your life. Only gamble with money you can afford to lose.
+                </p>
+                <div class="footer-logo-container">
+                    <img src="img/75a66996c8988a839e73f363914e85fba6db1e10.png" alt="Logo 1" class="footer-logo">
+                    <img src="img/1be4be065fedecbf48f67c6f6b5dc6ffa0b85cfb.png" alt="Logo 2" class="footer-logo">
+                    <img src="img/b787bdceb376f6ca4007ae8c5de2c7bcea17b7ef.png" alt="Logo 3" class="footer-logo">
+                    <img src="img/164ae989bb0b639138196e2074669754ca16ba85.png" alt="Logo 4" class="footer-logo">
+                </div>
+                <p class="text-[12px] text-center font-['Poppins'] font-normal mt-4">
+                    © 2025 SH4NE_R. All rights reserved. 
+                    <a href="#" class="underline">Privacy Policy</a> | 
+                    <a href="#" class="underline">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                feather.replace();
+            } catch (e) {
+                console.error('Feather Icons failed to load:', e);
+                document.querySelectorAll('.feather-icon').forEach(function(el) {
+                    el.classList.add('empty');
+                });
+            }
+            AOS.init();
+
+            // Detect mobile devices
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1024;
+            if (isMobile) {
+                document.body.classList.add('mobile-detected');
+            }
+
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active', 'text-black', 'shadow-lg'));
+                    tabs.forEach(t => t.classList.add('inactive'));
+                    tab.classList.remove('inactive');
+                    tab.classList.add('active', 'text-black', 'shadow-lg');
+                });
+            });
+
+            // Countdown Timer (10 days from now)
+            const countdownElement = document.getElementById('countdown');
+            const countDownDate = new Date().getTime() + (10 * 24 * 60 * 60 * 1000);
+            const countdown = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    countdownElement.textContent = "EXPIRED";
+                }
+            }, 1000);
+
+            // Count-up animation for profits
+            function animateValue(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.textContent = Math.floor(progress * (end - start) + start).toLocaleString();
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            document.querySelectorAll('.winning-amount, .profit').forEach(el => {
+                const endValue = parseInt(el.textContent.replace(/[^0-9.-]+/g, ""));
+                el.textContent = '0';
+                animateValue(el, 0, endValue, 2000);
+            });
+
+            // Winner card hover effect
+            document.querySelectorAll('.winner-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'scale(1.05)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'scale(1)';
+                });
+            });
+
+            // Button hover glow
+            document.querySelectorAll('.use-code-btn, .pagination button').forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.boxShadow = '0 0 20px var(--neon-blue)';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.boxShadow = '0 0 10px var(--neon-blue)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
